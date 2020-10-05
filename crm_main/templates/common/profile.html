@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="col-xl-12 col-lg-10 col-md-9">
+
+{% if messages %} 
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>{{user.first_name}}, </strong> {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+    <!-- Nested Row within Card Body -->
+      <div class="row">
+        <div class="col-lg-6 d-none d-lg-block ">
+          <img src="{{user.profile.profile_image.url}}" height="500px" width="580px" style="padding: 5px 5px 5px 30px";>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Profile</h1>
+            </div>
+            <div class="text-left">
+                <p><strong>Username: </strong>{{user.username}}</p>
+                <p><strong>First Name: </strong>{{user.first_name}}</p>
+                <p><strong>Last Name: </strong>{{user.last_name}}</p>
+                <p><strong>Email: </strong>{{user.email}}</p>
+                <p><strong>Bio: </strong>{{user.profile.bio}}</p>
+                <p><strong>Birth Date: </strong>{{user.profile.birth_date}}</p>
+                <p><strong>Phone Number: </strong>{{user.profile.phone_number}}</p>
+            </div>
+              <a href="{% url 'profileupdate'%}" <button type="button" class="btn btn-success btn-user btn-block">Profile Update</button></a>
+              <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
